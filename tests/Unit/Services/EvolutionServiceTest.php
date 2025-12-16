@@ -38,11 +38,11 @@ class EvolutionServiceTest extends TestCase
     public function it_can_make_get_request()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'success', 'data' => 'test']))
+            new Response(200, [], json_encode(['status' => 'success', 'data' => 'test'])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->get('/test-endpoint');
+        $result  = $service->get('/test-endpoint');
 
         $this->assertEquals(['status' => 'success', 'data' => 'test'], $result);
     }
@@ -51,11 +51,11 @@ class EvolutionServiceTest extends TestCase
     public function it_can_make_get_request_with_query_params()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'success']))
+            new Response(200, [], json_encode(['status' => 'success'])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->get('/test-endpoint', ['param1' => 'value1', 'param2' => 'value2']);
+        $result  = $service->get('/test-endpoint', ['param1' => 'value1', 'param2' => 'value2']);
 
         $this->assertEquals(['status' => 'success'], $result);
     }
@@ -64,11 +64,11 @@ class EvolutionServiceTest extends TestCase
     public function it_can_make_post_request()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'success', 'id' => 123]))
+            new Response(200, [], json_encode(['status' => 'success', 'id' => 123])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->post('/test-endpoint', ['name' => 'test']);
+        $result  = $service->post('/test-endpoint', ['name' => 'test']);
 
         $this->assertEquals(['status' => 'success', 'id' => 123], $result);
     }
@@ -77,11 +77,11 @@ class EvolutionServiceTest extends TestCase
     public function it_can_make_put_request()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'updated']))
+            new Response(200, [], json_encode(['status' => 'updated'])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->put('/test-endpoint', ['name' => 'updated']);
+        $result  = $service->put('/test-endpoint', ['name' => 'updated']);
 
         $this->assertEquals(['status' => 'updated'], $result);
     }
@@ -90,11 +90,11 @@ class EvolutionServiceTest extends TestCase
     public function it_can_make_delete_request()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'deleted']))
+            new Response(200, [], json_encode(['status' => 'deleted'])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->delete('/test-endpoint', ['force' => true]);
+        $result  = $service->delete('/test-endpoint', ['force' => true]);
 
         $this->assertEquals(['status' => 'deleted'], $result);
     }
@@ -103,7 +103,7 @@ class EvolutionServiceTest extends TestCase
     public function it_throws_exception_for_invalid_json()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], 'invalid json')
+            new Response(200, [], 'invalid json'),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
@@ -121,8 +121,8 @@ class EvolutionServiceTest extends TestCase
         $mockHandler = new MockHandler([
             new Response(400, [], json_encode([
                 'error' => 'Bad Request',
-                'code' => 400
-            ]))
+                'code'  => 400,
+            ])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
@@ -139,9 +139,9 @@ class EvolutionServiceTest extends TestCase
     {
         $mockHandler = new MockHandler([
             new Response(200, [], json_encode([
-                'status' => 'error',
-                'message' => 'Something went wrong'
-            ]))
+                'status'  => 'error',
+                'message' => 'Something went wrong',
+            ])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
@@ -160,7 +160,7 @@ class EvolutionServiceTest extends TestCase
                 'Connection timeout',
                 new Request('GET', 'test'),
                 new Response(500, [], json_encode(['error' => 'Server Error']))
-            )
+            ),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
@@ -178,7 +178,7 @@ class EvolutionServiceTest extends TestCase
             new RequestException(
                 'Network error',
                 new Request('GET', 'test')
-            )
+            ),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
@@ -193,11 +193,11 @@ class EvolutionServiceTest extends TestCase
     public function it_returns_empty_array_for_null_response()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(null))
+            new Response(200, [], json_encode(null)),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->get('/test-endpoint');
+        $result  = $service->get('/test-endpoint');
 
         $this->assertEquals([], $result);
     }
@@ -206,11 +206,11 @@ class EvolutionServiceTest extends TestCase
     public function it_trims_leading_slash_from_endpoint()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'success']))
+            new Response(200, [], json_encode(['status' => 'success'])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->get('/test-endpoint');
+        $result  = $service->get('/test-endpoint');
 
         $this->assertEquals(['status' => 'success'], $result);
     }
@@ -219,11 +219,11 @@ class EvolutionServiceTest extends TestCase
     public function it_can_make_post_request_with_empty_data()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'success']))
+            new Response(200, [], json_encode(['status' => 'success'])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->post('/test-endpoint');
+        $result  = $service->post('/test-endpoint');
 
         $this->assertEquals(['status' => 'success'], $result);
     }
@@ -232,11 +232,11 @@ class EvolutionServiceTest extends TestCase
     public function it_can_make_put_request_with_empty_data()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'success']))
+            new Response(200, [], json_encode(['status' => 'success'])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->put('/test-endpoint');
+        $result  = $service->put('/test-endpoint');
 
         $this->assertEquals(['status' => 'success'], $result);
     }
@@ -245,11 +245,11 @@ class EvolutionServiceTest extends TestCase
     public function it_can_make_delete_request_with_empty_params()
     {
         $mockHandler = new MockHandler([
-            new Response(200, [], json_encode(['status' => 'success']))
+            new Response(200, [], json_encode(['status' => 'success'])),
         ]);
 
         $service = $this->createServiceWithMockHandler($mockHandler);
-        $result = $service->delete('/test-endpoint');
+        $result  = $service->delete('/test-endpoint');
 
         $this->assertEquals(['status' => 'success'], $result);
     }
@@ -258,8 +258,8 @@ class EvolutionServiceTest extends TestCase
     public function it_sets_correct_headers()
     {
         $service = new EvolutionService('http://localhost:8080', 'test-key');
-        $client = $service->getClient();
-        $config = $client->getConfig();
+        $client  = $service->getClient();
+        $config  = $client->getConfig();
 
         $this->assertEquals('application/json', $config['headers']['Content-Type']);
         $this->assertEquals('application/json', $config['headers']['Accept']);
@@ -270,8 +270,8 @@ class EvolutionServiceTest extends TestCase
     public function it_sets_custom_timeout()
     {
         $service = new EvolutionService('http://localhost:8080', 'test-key', 60);
-        $client = $service->getClient();
-        $config = $client->getConfig();
+        $client  = $service->getClient();
+        $config  = $client->getConfig();
 
         $this->assertEquals(60, $config['timeout']);
     }
@@ -279,12 +279,12 @@ class EvolutionServiceTest extends TestCase
     protected function createServiceWithMockHandler(MockHandler $mockHandler): EvolutionService
     {
         $handlerStack = HandlerStack::create($mockHandler);
-        $client = new Client(['handler' => $handlerStack]);
+        $client       = new Client(['handler' => $handlerStack]);
 
         $service = new EvolutionService('http://localhost:8080', 'test-api-key');
         
         // Replace the client with our mocked one
-        $reflection = new \ReflectionClass($service);
+        $reflection     = new \ReflectionClass($service);
         $clientProperty = $reflection->getProperty('client');
         $clientProperty->setAccessible(true);
         $clientProperty->setValue($service, $client);

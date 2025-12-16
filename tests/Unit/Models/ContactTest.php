@@ -11,12 +11,12 @@ class ContactTest extends TestCase
     /** @test */
     public function it_can_create_contact_with_required_fields_only()
     {
-        $fullName = 'John Doe';
-        $wuid = '5511999999999';
+        $fullName    = 'John Doe';
+        $wuid        = '5511999999999';
         $phoneNumber = '5511999999999';
 
         $contact = new Contact($fullName, $wuid, $phoneNumber);
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertEquals($fullName, $data['fullName']);
         $this->assertEquals($wuid, $data['wuid']);
@@ -30,15 +30,15 @@ class ContactTest extends TestCase
     /** @test */
     public function it_can_create_contact_with_all_fields()
     {
-        $fullName = 'Jane Smith';
-        $wuid = '5511888888888';
-        $phoneNumber = '5511888888888';
+        $fullName     = 'Jane Smith';
+        $wuid         = '5511888888888';
+        $phoneNumber  = '5511888888888';
         $organization = 'ACME Corp';
-        $email = 'jane@acme.com';
-        $url = 'https://acme.com';
+        $email        = 'jane@acme.com';
+        $url          = 'https://acme.com';
 
         $contact = new Contact($fullName, $wuid, $phoneNumber, $organization, $email, $url);
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertEquals($fullName, $data['fullName']);
         $this->assertEquals($wuid, $data['wuid']);
@@ -52,13 +52,13 @@ class ContactTest extends TestCase
     /** @test */
     public function it_can_create_contact_with_organization_only()
     {
-        $fullName = 'Bob Johnson';
-        $wuid = '5511777777777';
-        $phoneNumber = '5511777777777';
+        $fullName     = 'Bob Johnson';
+        $wuid         = '5511777777777';
+        $phoneNumber  = '5511777777777';
         $organization = 'Tech Company';
 
         $contact = new Contact($fullName, $wuid, $phoneNumber, $organization);
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertEquals($fullName, $data['fullName']);
         $this->assertEquals($wuid, $data['wuid']);
@@ -72,13 +72,13 @@ class ContactTest extends TestCase
     /** @test */
     public function it_can_create_contact_with_email_only()
     {
-        $fullName = 'Alice Brown';
-        $wuid = '5511666666666';
+        $fullName    = 'Alice Brown';
+        $wuid        = '5511666666666';
         $phoneNumber = '5511666666666';
-        $email = 'alice@example.com';
+        $email       = 'alice@example.com';
 
         $contact = new Contact($fullName, $wuid, $phoneNumber, null, $email);
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertEquals($fullName, $data['fullName']);
         $this->assertEquals($wuid, $data['wuid']);
@@ -92,13 +92,13 @@ class ContactTest extends TestCase
     /** @test */
     public function it_can_create_contact_with_url_only()
     {
-        $fullName = 'Charlie Wilson';
-        $wuid = '5511555555555';
+        $fullName    = 'Charlie Wilson';
+        $wuid        = '5511555555555';
         $phoneNumber = '5511555555555';
-        $url = 'https://charliewilson.com';
+        $url         = 'https://charliewilson.com';
 
         $contact = new Contact($fullName, $wuid, $phoneNumber, null, null, $url);
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertEquals($fullName, $data['fullName']);
         $this->assertEquals($wuid, $data['wuid']);
@@ -112,15 +112,15 @@ class ContactTest extends TestCase
     /** @test */
     public function it_can_create_contact_with_special_characters()
     {
-        $fullName = 'José María García';
-        $wuid = '5511444444444';
-        $phoneNumber = '+55 (11) 4444-4444';
+        $fullName     = 'José María García';
+        $wuid         = '5511444444444';
+        $phoneNumber  = '+55 (11) 4444-4444';
         $organization = 'Empresa & Cia.';
-        $email = 'josé@empresa.com.br';
-        $url = 'https://empresa.com.br/perfil?user=josé';
+        $email        = 'josé@empresa.com.br';
+        $url          = 'https://empresa.com.br/perfil?user=josé';
 
         $contact = new Contact($fullName, $wuid, $phoneNumber, $organization, $email, $url);
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertEquals($fullName, $data['fullName']);
         $this->assertEquals($wuid, $data['wuid']);
@@ -134,7 +134,7 @@ class ContactTest extends TestCase
     public function it_excludes_null_optional_fields_from_array()
     {
         $contact = new Contact('Test User', '123456', '123456', null, null, null);
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertArrayHasKey('fullName', $data);
         $this->assertArrayHasKey('wuid', $data);
@@ -149,7 +149,7 @@ class ContactTest extends TestCase
     public function it_includes_empty_string_optional_fields_in_array()
     {
         $contact = new Contact('Test User', '123456', '123456', '', '', '');
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertArrayHasKey('organization', $data);
         $this->assertArrayHasKey('email', $data);
@@ -163,15 +163,15 @@ class ContactTest extends TestCase
     /** @test */
     public function it_can_create_contact_with_long_values()
     {
-        $fullName = 'Very Long Full Name That Might Be Used In Some Real World Scenarios Where People Have Long Names';
-        $wuid = '5511333333333';
-        $phoneNumber = '5511333333333';
+        $fullName     = 'Very Long Full Name That Might Be Used In Some Real World Scenarios Where People Have Long Names';
+        $wuid         = '5511333333333';
+        $phoneNumber  = '5511333333333';
         $organization = 'Very Long Organization Name That Spans Multiple Words And Might Include Special Characters & Symbols';
-        $email = 'very.long.email.address@very.long.domain.name.example.com';
-        $url = 'https://very.long.url.example.com/path/to/resource?with=parameters&and=values';
+        $email        = 'very.long.email.address@very.long.domain.name.example.com';
+        $url          = 'https://very.long.url.example.com/path/to/resource?with=parameters&and=values';
 
         $contact = new Contact($fullName, $wuid, $phoneNumber, $organization, $email, $url);
-        $data = $contact->toArray();
+        $data    = $contact->toArray();
 
         $this->assertEquals($fullName, $data['fullName']);
         $this->assertEquals($organization, $data['organization']);

@@ -12,12 +12,12 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_label_with_add_action()
     {
-        $number = '5511999999999';
+        $number  = '5511999999999';
         $labelId = 'label_123';
-        $action = 'add';
+        $action  = 'add';
 
         $label = new Label($number, $labelId, $action);
-        $data = $label->toArray();
+        $data  = $label->toArray();
 
         $this->assertEquals($number, $data['number']);
         $this->assertEquals($labelId, $data['labelId']);
@@ -28,12 +28,12 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_label_with_remove_action()
     {
-        $number = '5511888888888';
+        $number  = '5511888888888';
         $labelId = 'label_456';
-        $action = 'remove';
+        $action  = 'remove';
 
         $label = new Label($number, $labelId, $action);
-        $data = $label->toArray();
+        $data  = $label->toArray();
 
         $this->assertEquals($number, $data['number']);
         $this->assertEquals($labelId, $data['labelId']);
@@ -80,12 +80,12 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_label_with_formatted_phone_number()
     {
-        $number = '+55 (11) 99999-9999';
+        $number  = '+55 (11) 99999-9999';
         $labelId = 'label_formatted';
-        $action = 'add';
+        $action  = 'add';
 
         $label = new Label($number, $labelId, $action);
-        $data = $label->toArray();
+        $data  = $label->toArray();
 
         $this->assertEquals($number, $data['number']);
         $this->assertEquals($labelId, $data['labelId']);
@@ -95,12 +95,12 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_label_with_special_characters_in_label_id()
     {
-        $number = '5511777777777';
+        $number  = '5511777777777';
         $labelId = 'label_with_special_chars_@#$%';
-        $action = 'remove';
+        $action  = 'remove';
 
         $label = new Label($number, $labelId, $action);
-        $data = $label->toArray();
+        $data  = $label->toArray();
 
         $this->assertEquals($number, $data['number']);
         $this->assertEquals($labelId, $data['labelId']);
@@ -110,12 +110,12 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_label_with_numeric_label_id()
     {
-        $number = '5511666666666';
+        $number  = '5511666666666';
         $labelId = '12345';
-        $action = 'add';
+        $action  = 'add';
 
         $label = new Label($number, $labelId, $action);
-        $data = $label->toArray();
+        $data  = $label->toArray();
 
         $this->assertEquals($number, $data['number']);
         $this->assertEquals($labelId, $data['labelId']);
@@ -125,12 +125,12 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_label_with_empty_number()
     {
-        $number = '';
+        $number  = '';
         $labelId = 'label_empty_number';
-        $action = 'add';
+        $action  = 'add';
 
         $label = new Label($number, $labelId, $action);
-        $data = $label->toArray();
+        $data  = $label->toArray();
 
         $this->assertEquals('', $data['number']);
         $this->assertEquals($labelId, $data['labelId']);
@@ -140,12 +140,12 @@ class LabelTest extends TestCase
     /** @test */
     public function it_can_create_label_with_empty_label_id()
     {
-        $number = '5511555555555';
+        $number  = '5511555555555';
         $labelId = '';
-        $action = 'remove';
+        $action  = 'remove';
 
         $label = new Label($number, $labelId, $action);
-        $data = $label->toArray();
+        $data  = $label->toArray();
 
         $this->assertEquals($number, $data['number']);
         $this->assertEquals('', $data['labelId']);
@@ -156,7 +156,7 @@ class LabelTest extends TestCase
     public function it_returns_correct_array_structure()
     {
         $label = new Label('123456789', 'test_label', 'add');
-        $data = $label->toArray();
+        $data  = $label->toArray();
 
         $this->assertIsArray($data);
         $this->assertArrayHasKey('number', $data);
