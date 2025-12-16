@@ -16,6 +16,11 @@ use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 abstract class TestCase extends BaseTestCase
 {
     /**
+     * @var mixed
+     */
+    public static $latestResponse;
+
+    /**
      * @var MockHandler
      */
     protected $mockHandler;
