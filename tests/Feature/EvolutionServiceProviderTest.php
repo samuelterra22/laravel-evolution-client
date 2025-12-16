@@ -10,6 +10,11 @@ use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
 class EvolutionServiceProviderTest extends TestCase
 {
+    /**
+     * @var mixed
+     */
+    public static $latestResponse;
+
     /** @test */
     public function it_registers_the_service()
     {
