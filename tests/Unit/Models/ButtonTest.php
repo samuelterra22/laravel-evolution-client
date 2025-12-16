@@ -11,12 +11,12 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_reply_button()
     {
-        $type = 'reply';
+        $type        = 'reply';
         $displayText = 'Yes';
-        $attributes = ['id' => 'btn-yes'];
+        $attributes  = ['id' => 'btn-yes'];
 
         $button = new Button($type, $displayText, $attributes);
-        $data = $button->toArray();
+        $data   = $button->toArray();
 
         $this->assertEquals($type, $data['type']);
         $this->assertEquals($displayText, $data['displayText']);
@@ -26,12 +26,12 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_url_button()
     {
-        $type = 'url';
+        $type        = 'url';
         $displayText = 'Visit Website';
-        $attributes = ['url' => 'https://example.com'];
+        $attributes  = ['url' => 'https://example.com'];
 
         $button = new Button($type, $displayText, $attributes);
-        $data = $button->toArray();
+        $data   = $button->toArray();
 
         $this->assertEquals($type, $data['type']);
         $this->assertEquals($displayText, $data['displayText']);
@@ -41,12 +41,12 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_call_button()
     {
-        $type = 'call';
+        $type        = 'call';
         $displayText = 'Call Now';
-        $attributes = ['phoneNumber' => '+5511999999999'];
+        $attributes  = ['phoneNumber' => '+5511999999999'];
 
         $button = new Button($type, $displayText, $attributes);
-        $data = $button->toArray();
+        $data   = $button->toArray();
 
         $this->assertEquals($type, $data['type']);
         $this->assertEquals($displayText, $data['displayText']);
@@ -56,11 +56,11 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_button_without_attributes()
     {
-        $type = 'reply';
+        $type        = 'reply';
         $displayText = 'Simple Button';
 
         $button = new Button($type, $displayText);
-        $data = $button->toArray();
+        $data   = $button->toArray();
 
         $this->assertEquals($type, $data['type']);
         $this->assertEquals($displayText, $data['displayText']);
@@ -70,16 +70,16 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_button_with_multiple_attributes()
     {
-        $type = 'reply';
+        $type        = 'reply';
         $displayText = 'Complex Button';
-        $attributes = [
-            'id' => 'btn-complex',
-            'payload' => 'complex_action',
-            'metadata' => ['priority' => 'high']
+        $attributes  = [
+            'id'       => 'btn-complex',
+            'payload'  => 'complex_action',
+            'metadata' => ['priority' => 'high'],
         ];
 
         $button = new Button($type, $displayText, $attributes);
-        $data = $button->toArray();
+        $data   = $button->toArray();
 
         $this->assertEquals($type, $data['type']);
         $this->assertEquals($displayText, $data['displayText']);
@@ -92,12 +92,12 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_can_create_button_with_empty_attributes_array()
     {
-        $type = 'reply';
+        $type        = 'reply';
         $displayText = 'Empty Attributes';
-        $attributes = [];
+        $attributes  = [];
 
         $button = new Button($type, $displayText, $attributes);
-        $data = $button->toArray();
+        $data   = $button->toArray();
 
         $this->assertEquals($type, $data['type']);
         $this->assertEquals($displayText, $data['displayText']);
@@ -107,15 +107,15 @@ class ButtonTest extends TestCase
     /** @test */
     public function it_merges_attributes_correctly()
     {
-        $type = 'url';
+        $type        = 'url';
         $displayText = 'Test Button';
-        $attributes = [
-            'url' => 'https://test.com',
-            'customField' => 'custom_value'
+        $attributes  = [
+            'url'         => 'https://test.com',
+            'customField' => 'custom_value',
         ];
 
         $button = new Button($type, $displayText, $attributes);
-        $data = $button->toArray();
+        $data   = $button->toArray();
 
         // Should have constructor parameters and merged attributes
         $this->assertEquals('url', $data['type']);

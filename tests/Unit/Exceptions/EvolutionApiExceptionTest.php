@@ -24,7 +24,7 @@ class EvolutionApiExceptionTest extends TestCase
     /** @test */
     public function it_can_be_instantiated_with_message_only()
     {
-        $message = 'API request failed';
+        $message   = 'API request failed';
         $exception = new EvolutionApiException($message);
 
         $this->assertEquals($message, $exception->getMessage());
@@ -35,8 +35,8 @@ class EvolutionApiExceptionTest extends TestCase
     /** @test */
     public function it_can_be_instantiated_with_message_and_code()
     {
-        $message = 'Unauthorized';
-        $code = 401;
+        $message   = 'Unauthorized';
+        $code      = 401;
         $exception = new EvolutionApiException($message, $code);
 
         $this->assertEquals($message, $exception->getMessage());
@@ -47,9 +47,9 @@ class EvolutionApiExceptionTest extends TestCase
     /** @test */
     public function it_can_be_instantiated_with_all_parameters()
     {
-        $message = 'Server error';
-        $code = 500;
-        $previous = new Exception('Original exception');
+        $message   = 'Server error';
+        $code      = 500;
+        $previous  = new Exception('Original exception');
         $exception = new EvolutionApiException($message, $code, $previous);
 
         $this->assertEquals($message, $exception->getMessage());
@@ -89,7 +89,7 @@ class EvolutionApiExceptionTest extends TestCase
     /** @test */
     public function it_can_handle_special_characters_in_message()
     {
-        $message = 'Erro na API: Caracteres especiais áéíóú çñü @#$%^&*()';
+        $message   = 'Erro na API: Caracteres especiais áéíóú çñü @#$%^&*()';
         $exception = new EvolutionApiException($message);
 
         $this->assertEquals($message, $exception->getMessage());
@@ -98,7 +98,7 @@ class EvolutionApiExceptionTest extends TestCase
     /** @test */
     public function it_can_handle_long_error_messages()
     {
-        $message = str_repeat('This is a very long error message that might occur in real world scenarios. ', 10);
+        $message   = str_repeat('This is a very long error message that might occur in real world scenarios. ', 10);
         $exception = new EvolutionApiException($message);
 
         $this->assertEquals($message, $exception->getMessage());
@@ -133,8 +133,8 @@ class EvolutionApiExceptionTest extends TestCase
     /** @test */
     public function it_preserves_previous_exception_chain()
     {
-        $originalException = new Exception('Original error');
-        $middleException = new Exception('Middle error', 0, $originalException);
+        $originalException  = new Exception('Original error');
+        $middleException    = new Exception('Middle error', 0, $originalException);
         $evolutionException = new EvolutionApiException('Evolution API error', 500, $middleException);
 
         $this->assertSame($middleException, $evolutionException->getPrevious());
@@ -145,7 +145,7 @@ class EvolutionApiExceptionTest extends TestCase
     public function it_can_be_thrown_and_caught()
     {
         $message = 'Test exception';
-        $code = 400;
+        $code    = 400;
 
         try {
             throw new EvolutionApiException($message, $code);
@@ -159,7 +159,7 @@ class EvolutionApiExceptionTest extends TestCase
     public function it_can_be_caught_as_generic_exception()
     {
         $message = 'Test exception';
-        $code = 500;
+        $code    = 500;
 
         try {
             throw new EvolutionApiException($message, $code);
@@ -173,8 +173,8 @@ class EvolutionApiExceptionTest extends TestCase
     /** @test */
     public function it_provides_string_representation()
     {
-        $message = 'API Error';
-        $code = 400;
+        $message   = 'API Error';
+        $code      = 400;
         $exception = new EvolutionApiException($message, $code);
 
         $stringRep = (string) $exception;

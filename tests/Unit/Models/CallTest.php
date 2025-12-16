@@ -11,8 +11,8 @@ class CallTest extends TestCase
     /** @test */
     public function it_can_create_voice_call()
     {
-        $number = '5511999999999';
-        $isVideo = false;
+        $number       = '5511999999999';
+        $isVideo      = false;
         $callDuration = 45;
 
         $call = new Call($number, $isVideo, $callDuration);
@@ -27,8 +27,8 @@ class CallTest extends TestCase
     /** @test */
     public function it_can_create_video_call()
     {
-        $number = '5511888888888';
-        $isVideo = true;
+        $number       = '5511888888888';
+        $isVideo      = true;
         $callDuration = 120;
 
         $call = new Call($number, $isVideo, $callDuration);
@@ -43,8 +43,8 @@ class CallTest extends TestCase
     /** @test */
     public function it_can_create_call_with_zero_duration()
     {
-        $number = '5511777777777';
-        $isVideo = false;
+        $number       = '5511777777777';
+        $isVideo      = false;
         $callDuration = 0;
 
         $call = new Call($number, $isVideo, $callDuration);
@@ -58,8 +58,8 @@ class CallTest extends TestCase
     /** @test */
     public function it_can_create_call_with_long_duration()
     {
-        $number = '5511666666666';
-        $isVideo = true;
+        $number       = '5511666666666';
+        $isVideo      = true;
         $callDuration = 3600; // 1 hour
 
         $call = new Call($number, $isVideo, $callDuration);
@@ -73,8 +73,8 @@ class CallTest extends TestCase
     /** @test */
     public function it_can_create_call_with_formatted_phone_number()
     {
-        $number = '+55 (11) 99999-9999';
-        $isVideo = false;
+        $number       = '+55 (11) 99999-9999';
+        $isVideo      = false;
         $callDuration = 30;
 
         $call = new Call($number, $isVideo, $callDuration);
@@ -88,8 +88,8 @@ class CallTest extends TestCase
     /** @test */
     public function it_can_create_call_with_international_number()
     {
-        $number = '+1234567890';
-        $isVideo = true;
+        $number       = '+1234567890';
+        $isVideo      = true;
         $callDuration = 90;
 
         $call = new Call($number, $isVideo, $callDuration);
@@ -141,8 +141,8 @@ class CallTest extends TestCase
     /** @test */
     public function it_can_create_call_with_empty_number()
     {
-        $number = '';
-        $isVideo = false;
+        $number       = '';
+        $isVideo      = false;
         $callDuration = 10;
 
         $call = new Call($number, $isVideo, $callDuration);
